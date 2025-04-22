@@ -1,0 +1,6 @@
+item_id,title,genres,predicted_rating
+100,Fargo (1996),"['Crime', 'Drama', 'Thriller']",5.000000000000001
+1038,Switchback (1997),['Thriller'],5.000000000000001
+1436,Mr. Jones (1993),"['Drama', 'Romance']",5.000000000000001
+612,Lost Horizon (1937),['Drama'],5.0
+1130,Jupiter's Wife (1994),['Documentary'],5.0
