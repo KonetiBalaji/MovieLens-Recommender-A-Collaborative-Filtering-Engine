@@ -1,80 +1,105 @@
-Collaborative Filtering Recommender System
+# Collaborative Filtering Recommender System
 
-This project implements a modular, script-based recommender system using the MovieLens 100k dataset. It includes User-Based Collaborative Filtering, Item-Based Collaborative Filtering, and Matrix Factorization (SVD) techniques, with evaluation metrics and output recommendations.
+This project implements a modular, script-based movie recommender system using the MovieLens 100k dataset.  
+It includes:
 
-The code is designed to run as Python scripts on a local machine (not notebooks), and follows a clean, maintainable project structure.
+- ✅ User-Based Collaborative Filtering  
+- ✅ Item-Based Collaborative Filtering  
+- ✅ Matrix Factorization (SVD)  
+- ✅ Metadata enrichment (titles + genres)  
+- ✅ Streamlit web app interface  
 
-Project Structure
+---
 
+## 🔍 How the Recommendation Methods Work
+
+| Algorithm | Description | Example |
+|----------|-------------|---------|
+| **User-Based CF** | Recommends movies liked by users similar to you | *"Users like you rated these highly"* |
+| **Item-Based CF** | Recommends movies similar to those you've rated highly | *"You liked The Matrix? Try Inception."* |
+| **Matrix Factorization (SVD)** | Learns hidden preferences using matrix decomposition | *"You seem to enjoy sci-fi thrillers with strong leads"* |
+
+---
+
+## 🗂️ Project Structure
+
+```
 CollaborativeFiltering_Recommender/
 │
+├── main.py                      # Runs full pipeline
+├── streamlit_app.py             # Streamlit web UI
+├── requirements.txt             # Python dependencies
+├── LICENSE                      # MIT License
+├── README.md                    # Project docs
+│
 ├── data/
-│   ├── raw/                  # Place the original 'u.data' file here
-│   └── processed/            # Preprocessed ratings stored as CSV
+│   ├── raw/                     # Place 'u.data' and 'u.item' here
+│   └── processed/               # Preprocessed rating CSV
 │
-├── outputs/                  # All recommendation and evaluation outputs
-│   ├── user_cf_recommendations.csv
-│   ├── item_cf_recommendations.csv
-│   ├── mf_predicted_ratings.csv
-│   ├── mf_top_recommendations.csv
+├── outputs/                     # Recommended CSVs and predictions
 │
-├── src/                      # Source code modules
-│   ├── data_loader.py              # Data loading and preprocessing
-│   ├── recommender.py              # User-based and item-based CF logic
-│   ├── matrix_factorization.py     # SVD-based recommendation
-│   ├── evaluation.py               # Evaluation using RMSE
-│
-├── main.py                  # Main pipeline driver (script-based)
-├── README.md                # Project documentation
-├── requirements.txt         # Python dependencies
+└── src/
+    ├── data_loader.py
+    ├── recommender.py
+    ├── matrix_factorization.py
+    ├── metadata_loader.py
+    └── evaluation.py
+```
 
-Download and Place Dataset
+---
 
-1. Download the MovieLens 100k dataset from:
-   https://grouplens.org/datasets/movielens/100k/
+## 📥 Dataset Setup
 
-2. Extract it and place the 'u.data' file in:
-   data/raw/u.data
+1. Download the dataset:  
+   [https://grouplens.org/datasets/movielens/100k/](https://grouplens.org/datasets/movielens/100k/)
 
-The file should be a tab-separated file with the following columns:
-user_id   item_id   rating   timestamp
+2. Place the following files in `data/raw/`:
+   ```
+   u.data
+   u.item
+   ```
 
-The script will preprocess and reindex the data automatically.
+---
 
-Run the Full Pipeline
+## 🚀 Run the Pipeline (Terminal)
 
-Make sure you're in the root directory of the project.
+```bash
+pip install -r requirements.txt
+python main.py
+```
 
-Step 1: Install Dependencies
-    pip install -r requirements.txt
+This will:
+- Load, clean, and preprocess data
+- Generate user/item/MF recommendations
+- Evaluate each using RMSE
+- Save recommendations to `outputs/`
 
-Step 2: Run the Main Pipeline
-    python main.py
+---
 
-What Will Happen:
-1. Data will be loaded, cleaned, and saved.
-2. User-Based Collaborative Filtering:
-   - Predicts sample ratings
-   - Generates Top-N recommendations
-   - Saves to outputs/user_cf_recommendations.csv
-3. Item-Based Collaborative Filtering:
-   - Computes item-item similarities
-   - Recommends Top-N items
-   - Saves to outputs/item_cf_recommendations.csv
-4. Matrix Factorization (SVD):
-   - Trains SVD model on user-item matrix
-   - Generates full prediction matrix
-   - Recommends Top-N items
-   - Saves to outputs/mf_predicted_ratings.csv and outputs/mf_top_recommendations.csv
-5. Evaluation using RMSE
+## 🌐 Launch Streamlit Web App
 
-Authors
-Balaji Koneti
-Graduate student in Computer Science
-Passionate about AI, data engineering, and building real-world machine learning systems.
-LinkedIn: https://www.linkedin.com/in/balajikoneti
+```bash
+streamlit run streamlit_app.py
+```
 
-License
-This project is licensed under the MIT License.
-You are free to use, modify, and distribute it with attribution.
+### Features:
+- Select a user ID
+- Choose algorithm (User CF, Item CF, MF)
+- View top-5 recommendations
+- Movie titles and genres included
+- Educational explanation for new users
 
+---
+
+## 👨‍💻 Author
+
+**Balaji Koneti**  
+Graduate student in Computer Science  
+Passionate about AI, data engineering, and real-world machine learning solutions.  
+[LinkedIn](https://www.linkedin.com/in/balajikoneti)
+
+---
+
+## 🪪 License
+
+This project is licensed under the [MIT License](LICENSE).
